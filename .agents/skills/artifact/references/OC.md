@@ -16,7 +16,7 @@ One block per system operation, each containing:
    message) and the Domain Model concepts touched.
 3. **Preconditions** — required state before execution, expressed in Domain
    Model terms.
-4. **Postconditions** — state changes only, in Larman's style: *instance
+4. **Postconditions** — state changes only, in Domain Model terms (no technical solution such as a file, an environment variable or a database; those come first in the SD, DCD and ERD), in Larman's style: *instance
    created / instance associated / attribute modified*. Declarative ("what"),
    never algorithmic ("how"); avoid vague text like "system processes the
    request".

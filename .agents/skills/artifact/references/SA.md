@@ -12,8 +12,10 @@ Cite in `CrossReference` only if the instance exists (`new-artifact.sh` checks t
    Language)`. Every row fully filled; no unclassified stakeholder.
 3. **Power/Interest Classification Rationale** — narrative per quadrant,
    consistent with the table.
-4. **Primary Concerns and FURPS+ Mapping** — each concern in business
-   language *and* mapped to a FURPS+ attribute.
+4. **Primary Concerns and FURPS+ Mapping** — the concern register:
+   `Concern ID | Stakeholder | Concern | FURPS+ attribute`. Each concern is in
+   business language *and* mapped to a FURPS+ attribute, has a stable ID
+   `CN-001`, `CN-002`, … and names the stakeholder (`S01`) who raised it.
 5. **Communication Requirements** — channel, frequency, deliverable type,
    tied to a project phase or milestone.
 6. **Conflicting Interests and Mitigations** — every conflict has a
@@ -23,5 +25,10 @@ Cite in `CrossReference` only if the instance exists (`new-artifact.sh` checks t
 8. **Sign-Off**.
 
 Stakeholder IDs (`S01`, `S02`, …) are **stable: never renumbered or reused**.
-Every other artifact cites them for RACI, ownership and review assignment
+Concern IDs (`CN-NNN`) are stable in the same way. The views name the concerns
+they answer, the Traceability Matrix links each concern to its views and
+decisions, and the Architecture Description (`AD`) lists any concern no view
+answers.
+
+Every other artifact cites stakeholder IDs for RACI, ownership and review assignment
 (`AGENTS.md` rule 3). Add new stakeholders with the next free `S<NN>`.

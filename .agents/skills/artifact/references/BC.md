@@ -41,5 +41,8 @@ In this order:
     inline instead of citing their IDs** — this is the single most common
     defect found when reviewing Business Cases (see `QC-BC-001`'s Common
     Defects).
+    In a first draft, before the Stakeholder Analysis exists, write `pending SA`
+    in the table; fill it when the Stakeholder Analysis does (the `create-project`
+    skill, step 1 of its journey).
 15. **Recommendation** — a single, unambiguous "proceed" or "do not
     proceed" statement.

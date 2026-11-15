@@ -20,3 +20,9 @@ Cite in `CrossReference` only if the instance exists (`new-artifact.sh` checks t
    and its matching join.
 5. **Path Coverage** — every path runs from a start event to a defined end
    event; no dead ends.
+
+## Viewpoint
+
+This view serves the process owners and the business stakeholders. It frames how the business process runs, who does each step and where work is handed over. The Purpose of an instance names the
+concerns (`CN-NNN` of the Stakeholder Analysis) the BPMN Process Model answers and the
+stakeholders it serves; the Traceability Matrix lists it for each concern.

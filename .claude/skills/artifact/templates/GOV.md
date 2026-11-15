@@ -5,11 +5,13 @@
 | --- | --- |
 | ID | @ID@ |
 | CrossReference | @CROSSREF@ |
+| Language | @LANGUAGE@ |
+| Domain | @DOMAIN@ |
 
 ## Version History
 | Date | Status | Author | Reviewer | Change | Commit |
 | --- | --- | --- | --- | --- | --- |
-| @DATE@ | Accepted | @AUTHOR@ | <reviewer S-ID> | Initial version | pending |
+| @DATE@ | Proposed | @AUTHOR@ | <reviewer S-ID> | Initial version | pending |
 
 ---
 
@@ -21,7 +23,7 @@ artifact instances, producing SQA Review Records and Go/No-Go decisions.
 ## ARB Review Workflow
 
 1. **Submission** — the artifact owner submits an instance for review,
-   identifying its type's QC checklist (`framework/qc/qc-*.md`).
+   identifying its type's QC checklist (`framework/qc/*/qc-*.md`).
 2. **QC Checklist Review** — the assigned reviewer (see RACI) applies the
    checklist criterion by criterion.
 3. **Review Record** — the reviewer documents the outcome as an SQA Review
@@ -54,7 +56,11 @@ Chair (`S<NN>`), overriding the category-level Accountable role.
 
 - A **No-Go** verdict, or any disagreement between the Responsible reviewer
   and the category's Accountable owner, escalates to the ARB Chair.
-- A reviewer may not review an instance they authored.
+- A reviewer may not review an instance they authored. The one exception is
+  autonomous mode: the AI may act as stand-in for a reviewer or an Accountable
+  role, recorded as `AI as stand-in for <S-ID>` and `Mode: autonomous, not
+  independent`; the Product Owner's acceptance of the plan is the
+  authorisation for it.
 - Repeated No-Go verdicts (2 or more) on the same artifact type trigger a
   review of the corresponding `QC-*` checklist itself.
 

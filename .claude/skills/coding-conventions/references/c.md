@@ -6,7 +6,9 @@ safety-critical or security-sensitive code.
 
 ## Standard base
 
-ISO C11 or C17 as set by the project's compiler flag (`-std=c11`). Compile
+ISO/IEC 9899:2024 (C23) is the default (`-std=c23`; `-std=c2x` on a compiler
+that does not accept `c23` yet). A project may pin an older standard
+(`-std=c17`, `-std=c11`) in its compiler flag and records the reason. Compile
 with warnings on (`-Wall -Wextra -Wpedantic`); treat warnings as errors in
 release builds.
 
@@ -29,6 +31,22 @@ release builds.
   they cannot collide.
 - Macros are a last resort; prefer `static inline` functions and `enum` or
   `const` values.
+
+## Project layout
+
+Layers follow the `clean-architecture` skill ("Folder structure" and "Names per
+language"). C has no namespaces, so a directory is a layer and a public symbol
+carries the layer and the module as its prefix:
+
+```
+myapp/
+├── src/
+│   ├── domain/            # entities/order.h, order.c: domain_order_total()
+│   ├── application/       # use_cases/, ports/
+│   ├── infrastructure/    # persistence/, config/
+│   └── presentation/      # commands/ (a command line is the usual entry point)
+└── tests/                 # unit/, integration/, e2e/ (test_<module>.c)
+```
 
 ## Formatting
 

@@ -5,11 +5,13 @@
 | --- | --- |
 | ID | @ID@ |
 | CrossReference | @CROSSREF@ |
+| Language | @LANGUAGE@ |
+| Domain | @DOMAIN@ |
 
 ## Version History
 | Date | Status | Author | Reviewer | Change | Commit |
 | --- | --- | --- | --- | --- | --- |
-| @DATE@ | Accepted | @AUTHOR@ | <reviewer S-ID> | Initial version | pending |
+| @DATE@ | Proposed | @AUTHOR@ | <reviewer S-ID> | Initial version | pending |
 
 ---
 
@@ -29,6 +31,8 @@ Maps each Product Owner (PO) term to its professional IT term. PO language:
 - The Domain Model, use cases and user stories use the PO term; the Operation
   Contract, Sequence Diagram, Design Class Diagram and ERD use the IT term.
 - One IT term per PO term and one PO term per IT term; no synonyms.
+- Rows are in ascending order of the PO term (case-insensitive, by the
+  alphabet of the PO language), so a term is found without searching.
 
 ---
 

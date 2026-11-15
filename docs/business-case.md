@@ -4,18 +4,21 @@
 | Key | Value |
 | --- | --- |
 | ID | BC-001 |
-| CrossReference | [SA-001] |
+| CrossReference | [SA-001], [MIL-003] |
+| Language | en |
+| Domain | education |
 
 ## Version History
 | Date | Status | Author | Reviewer | Change | Commit |
 | --- | --- | --- | --- | --- | --- |
 | 2026-10-04 | Accepted | Jens Tirsvad Nielsen | S01 | Initial version | [1d35410] |
+| 2026-11-15 | Accepted | Jens Tirsvad Nielsen | AI as stand-in for S01 | Added the baseline phase MIL-003 as objective 7, scope item, constraint and success criterion 6; added the Language and Domain metadata, the spelled-out abbreviations and a risk on the stand-in review; reviewed in autonomous mode, not independent | [11c811b] |
 
 ---
 
 ## Executive Summary
 
-This project delivers a console Blackjack game written in Python as the first capstone of the Udemy course *100 Days of Code: The Complete Python Pro Bootcamp* (day 11). The player plays against a computer dealer under simple house rules, using emoji playing cards. The project doubles as a worked example of the SQA/QC framework: a small, fully planned, tested and documented Python 3.13+ code base that is easy to review.
+This project delivers a console Blackjack game written in Python as the first capstone of the Udemy course *100 Days of Code: The Complete Python Pro Bootcamp* (day 11). The player plays against a computer dealer under simple house rules, using emoji playing cards. The project doubles as a worked example of the software quality assurance (SQA) and quality control (QC) framework: a small, fully planned, tested and documented Python 3.13+ code base that is easy to review.
 
 ## Methodological and Standards Foundation
 
@@ -37,6 +40,7 @@ A small, well-structured game shows the full delivery chain (plan, tracked issue
 4. Provide a reproducible local setup (venv, `pyproject.toml`) and run/test instructions.
 5. Document the source with Doxygen comments and ship a `Doxyfile`.
 6. Track every step as a milestone, issue and pull request on the project's git host.
+7. Bring the finished project to the common baseline of the framework ([MIL-003]): the adopted framework release, a wiki in English, Danish and Malay, the README in the framework template, complete licence metadata, a traceability matrix and review records, without changing the behaviour of the game.
 
 House rules: unlimited deck, no jokers, Jack/Queen/King count 10, Ace counts 11 or 1, drawn cards are not removed, the computer is the dealer and draws while its score is below 17, a two-card Ace + 10 hand is a blackjack.
 
@@ -49,6 +53,7 @@ House rules: unlimited deck, no jokers, Jack/Queen/King count 10, Ace counts 11 
 - Project scaffolding: `src/`, `tests/`, `docs/`, `pyproject.toml`, `constants.py`, Python `.gitignore`, `Doxyfile`, `README.md`.
 - Unit tests for the rules and the console flow (with scripted input).
 - Git host housekeeping: repository description and topics.
+- The baseline phase [MIL-003]: framework release, wiki in three languages, README in the framework template, licence metadata, traceability matrix and review records.
 
 ### Out of Scope
 
@@ -56,6 +61,7 @@ House rules: unlimited deck, no jokers, Jack/Queen/King count 10, Ace counts 11 
 - Graphical or web user interface; network play.
 - Packaging for PyPI or any deployment.
 - Runtime third-party dependencies.
+- Any change to `src/` or `tests/` in the baseline phase.
 
 ## Expected Benefits
 
@@ -82,6 +88,7 @@ The project supports the owner's goal of completing the 100 Days of Code course 
 | 3 | Portability: runs on Python 3.13+ with no runtime dependencies | `pyproject.toml` lists zero runtime dependencies | Inspection of `pyproject.toml` |
 | 4 | Usability: documentation lets a new user run and test the game | Setup to first game in under 5 minutes following the README only | Walkthrough on a clean clone |
 | 5 | Maintainability: source documentation is generated | `doxygen Doxyfile` completes without warnings | Doxygen log |
+| 6 | The baseline phase is done ([MIL-003]) | Wiki pages in 3 languages, `framework/scripts/check-readme.sh` exits with code 0, 100 % of the CI (continuous integration) checks of the pull request pass | Files in `docs/wiki/`, the script exit code and the pull request status on the git host |
 
 ## Risks
 
@@ -91,6 +98,7 @@ The project supports the owner's goal of completing the 100 Days of Code course 
 | Randomness makes tests flaky | Unreliable tests | Patch `random.choice` or inject the card source in tests |
 | Scope creep (betting, splitting) | Late delivery | Out of Scope list; changes need a new milestone |
 | Secrets in `.env` leak into the repository | Credential exposure | `.env` is git-ignored and is never imported or tested by the project |
+| The author is also the reviewer of the baseline documents | A defect is missed because the review is not independent | Every review record says `Mode: autonomous, not independent`, and the end-of-run summary lists it for challenge |
 
 ## Assumptions
 
@@ -98,6 +106,7 @@ The project supports the owner's goal of completing the 100 Days of Code course 
 - The repository is public, so coursists (`S02`) and viewers (`S03`) can read it.
 - The git host is `git.tirsystem.com`, organisation `Tirsvad-Udemy-100-days-of-code`.
 - Python 3.13 or newer is installed locally.
+- For the baseline phase an AI assistant acts as stand-in reviewer for S01, because author and reviewer are one person (source: [SA-001], Conflicting Interests).
 
 ## Constraints
 
@@ -105,6 +114,7 @@ The project supports the owner's goal of completing the 100 Days of Code course 
 - Constants live in `constants.py`; layout is `src/`, `tests/`, `docs/`.
 - No runtime dependencies unless needed.
 - Nothing is committed, pushed or merged without the owner's request; work is done on branches and pull requests.
+- The baseline phase [MIL-003] is finished within one week, by 2026-11-22.
 
 ## Cost–Benefit Assessment
 
@@ -126,5 +136,7 @@ Proceed - the scope is small, the rules are fully specified by the assignment an
 
 ---
 
+[MIL-003]: ./milestones/mil-003-framework-baseline.md
 [SA-001]: ./stakeholder-analysis.md
 [1d35410]: https://git.tirsystem.com/Tirsvad-Udemy-100-days-of-code/011-blackjack/commit/1d35410b8d29df6c4991a0b9aff24f8509d58a86
+[11c811b]: https://git.tirsystem.com/Tirsvad-Udemy-100-days-of-code/011-blackjack/commit/11c811bf713454e183db31fb0ebb0965614bd3bf

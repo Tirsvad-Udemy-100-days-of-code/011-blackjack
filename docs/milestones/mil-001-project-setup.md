@@ -5,11 +5,14 @@
 | --- | --- |
 | ID | MIL-001 |
 | CrossReference | [BC-001] |
+| Language | en |
+| Domain | education |
 
 ## Version History
 | Date | Status | Author | Reviewer | Change | Commit |
 | --- | --- | --- | --- | --- | --- |
 | 2026-10-04 | Accepted | Jens Tirsvad Nielsen | S01 | Initial version | [1d35410] |
+| 2026-11-15 | Accepted | Jens Tirsvad Nielsen | AI as stand-in for S01 | Added the Language and Domain metadata (metadata only; content unchanged); reviewed in autonomous mode, not independent | [11c811b] |
 
 ---
 
@@ -70,3 +73,4 @@ A repository with `src/`, `tests/`, `docs/`, a `pyproject.toml` (Python 3.13+, n
 
 [BC-001]: ../business-case.md
 [1d35410]: https://git.tirsystem.com/Tirsvad-Udemy-100-days-of-code/011-blackjack/commit/1d35410b8d29df6c4991a0b9aff24f8509d58a86
+[11c811b]: https://git.tirsystem.com/Tirsvad-Udemy-100-days-of-code/011-blackjack/commit/11c811bf713454e183db31fb0ebb0965614bd3bf
