@@ -23,6 +23,24 @@ the Python version declared in `pyproject.toml`.
 - Do not shadow builtins (`list`, `id`, `type`); add a trailing underscore
   (`type_`) only as a last resort.
 
+## Project layout
+
+Layers follow the `clean-architecture` skill ("Folder structure" and "Names per
+language"). In Python each layer is a package with `snake_case` modules:
+
+```
+myapp/
+├── src/myapp/
+│   ├── domain/            # entities/, value_objects/, repositories/, errors/
+│   ├── application/       # use_cases/, dto/, ports/
+│   ├── infrastructure/    # persistence/, repositories/, messaging/, config/
+│   └── presentation/
+│       └── features/orders/
+│           ├── order_list_view.py
+│           └── order_list_view_model.py
+└── tests/                 # unit/, integration/, e2e/ (test_<module>.py)
+```
+
 ## Formatting
 
 - 4 spaces, no tabs. Maximum line length set once in the formatter config

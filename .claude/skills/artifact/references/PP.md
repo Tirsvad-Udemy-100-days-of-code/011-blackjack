@@ -46,11 +46,14 @@ bash framework/scripts/sync-project.sh              # dry run — prints the pla
 bash framework/scripts/sync-project.sh --apply      # creates/updates Milestones and Issues
 ```
 
-`--apply` needs a token: `GITEA_TOKEN` (Gitea, a personal access token — not
-a deploy key) or `gh auth login` (GitHub). `GITEA_TOKEN` can come from a
-`.env` file at the project root (copy `.env.example`, never commit it). If
+`--apply` needs a token: `TOKEN_FOR_GITEA_ISSUES` (Gitea, a personal access token
+scoped to issues and milestones; the project keeps `TOKEN_FOR_GITEA_REPO` for
+push and pull requests) or, when it is not set, the older `SYNC_TOKEN` or
+`GITEA_TOKEN` —
+not a deploy key — or `gh auth login` (GitHub). The token can come from a
+`.env` file at the project root (copy `framework/templates/.env.example`, never commit it). If
 `.env` is missing or has no token when a sync is needed, ask the user for
-one and create `.env` from `.env.example` with it rather than skipping the
+one and create `.env` from `framework/templates/.env.example` with it rather than skipping the
 sync or inventing a value.
 
 After a real `--apply` run, copy each Milestone's URL into the Gateway
@@ -59,6 +62,6 @@ does not need a new `## Version History` row).
 
 ## Validating
 
-`PP` has no QC checklist yet (open item) — validate a plan against the
-Business Case constraint it schedules and against `## Go / No-Go Criteria`
-in each `MIL-*` it lists, rather than a dedicated checklist.
+Review a plan against `qc/artifacts/qc-project-plan.md` (`QC-PP-001`). Its
+criteria include the Business Case constraint the plan schedules and the
+`## Go / No-Go Criteria` in each `MIL-*` it lists.

@@ -5,11 +5,13 @@
 | --- | --- |
 | ID | @ID@ |
 | CrossReference | @CROSSREF@ |
+| Language | @LANGUAGE@ |
+| Domain | @DOMAIN@ |
 
 ## Version History
 | Date | Status | Author | Reviewer | Change | Commit |
 | --- | --- | --- | --- | --- | --- |
-| @DATE@ | Accepted | @AUTHOR@ | <reviewer S-ID> | Initial version | pending |
+| @DATE@ | Proposed | @AUTHOR@ | <reviewer S-ID> | Initial version | pending |
 
 ---
 

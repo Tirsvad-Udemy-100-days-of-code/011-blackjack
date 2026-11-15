@@ -10,8 +10,8 @@ Cite in `CrossReference` only if the instance exists (`new-artifact.sh` checks t
 
 ## Location
 
-`docs/uc-NNN/uc.md`, one folder per use case (create with
-`new-artifact.sh UC --file docs/uc-NNN/uc.md`). The artifacts this use case
+`docs/use-cases/uc-NNN/uc.md`, one folder per use case (create with
+`new-artifact.sh UC --file docs/use-cases/uc-NNN/uc.md`). The artifacts this use case
 affects are saved in the same folder; see the `project-planning` skill, "Use
 cases get their own folder".
 

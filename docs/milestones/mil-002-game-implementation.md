@@ -5,11 +5,14 @@
 | --- | --- |
 | ID | MIL-002 |
 | CrossReference | [BC-001] |
+| Language | en |
+| Domain | education |
 
 ## Version History
 | Date | Status | Author | Reviewer | Change | Commit |
 | --- | --- | --- | --- | --- | --- |
 | 2026-10-04 | Accepted | Jens Tirsvad Nielsen | S01 | Initial version | [1d35410] |
+| 2026-11-15 | Accepted | Jens Tirsvad Nielsen | AI as stand-in for S01 | Added the Language and Domain metadata (metadata only; content unchanged); reviewed in autonomous mode, not independent | pending |
 
 ---
 

@@ -9,7 +9,7 @@
 ## Version History
 | Date | Status | Author | Reviewer | Change | Commit |
 | --- | --- | --- | --- | --- | --- |
-| @DATE@ | Accepted | @AUTHOR@ | <reviewer S-ID> | Initial version | pending |
+| @DATE@ | Proposed | @AUTHOR@ | <reviewer S-ID> | Initial version | pending |
 
 ---
 
@@ -24,9 +24,9 @@
 
 ## Attendees and Assessment
 
-| Stakeholder ID (SA) | Attended | Assessment (Pass / Not yet) | Notes |
-| --- | --- | --- | --- |
-| <S-ID> | <Yes / No> | <Pass / Not yet> | |
+| Stakeholder ID (SA) | Attended | Assessment (Pass / Not yet) | Languages and domains | Notes |
+| --- | --- | --- | --- | --- |
+| <S-ID> | <Yes / No> | <Pass / Not yet> | <languages the reviewer reads, then domains they know, e.g. `da, en; it, medical`> | |
 
 ## Feedback
 

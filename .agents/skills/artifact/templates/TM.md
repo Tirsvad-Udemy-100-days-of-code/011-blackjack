@@ -9,7 +9,7 @@
 ## Version History
 | Date | Status | Author | Reviewer | Change | Commit |
 | --- | --- | --- | --- | --- | --- |
-| @DATE@ | Accepted | @AUTHOR@ | <reviewer S-ID> | Initial version | pending |
+| @DATE@ | Proposed | @AUTHOR@ | <reviewer S-ID> | Initial version | pending |
 
 ---
 
@@ -21,9 +21,21 @@ updated whenever an artifact instance is created or reviewed.
 
 ## Traceability Table
 
-| Artifact Instance | Type | Upstream (Backward Link) | Downstream (Forward Link) | Last Reviewed (RC-ID) |
+| Artifact Instance | Type | Language | Domain | Upstream (Backward Link) | Downstream (Forward Link) | Last Reviewed (RC-ID) |
+| --- | --- | --- | --- | --- | --- | --- |
+| [<ID>] | <type> | <Language row, or - for a technical type> | <Domain row, or -> | [<upstream-ID>] | [<downstream-ID>] | [<RC-ID>] |
+
+## Concern Coverage
+
+| Concern (CN-ID) | Views that answer it | Decisions (ADR) | Quality check (TP) | Status |
 | --- | --- | --- | --- | --- |
-| [<ID>] | <type> | [<upstream-ID>] | [<downstream-ID>] | [<RC-ID>] |
+| CN-001 | [<view-ID>] | [<ADR-ID>] | [<TP-ID>] | Covered / Gap |
+
+## Open Inconsistencies
+
+| # | Views | Inconsistency | Found in (RC-ID) | Status | Resolved in |
+| --- | --- | --- | --- | --- | --- |
+| 1 | [<view-ID>], [<view-ID>] | <what differs> | [<RC-ID>] | Open | - |
 
 ---
 

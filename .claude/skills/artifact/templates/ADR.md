@@ -9,7 +9,7 @@
 ## Version History
 | Date | Status | Author | Reviewer | Change | Commit |
 | --- | --- | --- | --- | --- | --- |
-| @DATE@ | Accepted | @AUTHOR@ | <reviewer S-ID> | Initial version | pending |
+| @DATE@ | Proposed | @AUTHOR@ | <reviewer S-ID> | Initial version | pending |
 
 Allowed Status values: `Proposed`, `Accepted`, `Rejected`, `Deprecated`, `Superseded by ADR-NNNN`.
 

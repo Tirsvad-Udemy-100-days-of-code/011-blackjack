@@ -2,7 +2,9 @@
 
 ## Standard base
 
-ISO C++17 or later as set by the project (`-std=c++20`); the C++ Core
+ISO/IEC 14882:2024 (C++23) is the default (`-std=c++23`; `-std=c++2b` on a
+compiler that does not accept `c++23` yet). A project may pin an older standard
+(`-std=c++20`, `-std=c++17`) and records the reason. The C++ Core
 Guidelines are the rule source. C++ has no official naming style, so the
 style below is used unless the project already has another (rule 1 of the
 overall skill).
@@ -22,6 +24,24 @@ overall skill).
 | Macro | `UPPER_SNAKE` with project prefix; avoid macros | `BILLING_ASSERT` |
 | Header / source file | `snake_case.h` / `snake_case.cpp`, same base name | `stay_reader.h` |
 | Header guard | `#pragma once` (or `PROJECT_PATH_FILE_H`) | |
+
+## Project layout
+
+Layers follow the `clean-architecture` skill ("Folder structure" and "Names per
+language"). In C++ each layer is a directory and a `snake_case` namespace:
+
+```
+myapp/
+├── src/
+│   ├── domain/            # namespace myapp::domain: entities/, value_objects/
+│   ├── application/       # namespace myapp::application: use_cases/, ports/
+│   ├── infrastructure/    # namespace myapp::infrastructure: persistence/
+│   └── presentation/
+│       └── features/orders/
+│           ├── order_list_view.h, order_list_view.cpp
+│           └── order_list_view_model.h, order_list_view_model.cpp
+└── tests/                 # unit/, integration/, e2e/ (test_<module>.cpp)
+```
 
 ## Formatting
 

@@ -1,6 +1,6 @@
 ---
 name: artifact
-description: Create, edit or review any project document artifact — Business Case, Stakeholder Analysis, KPI, Business Model Canvas, BPMN, milestones/gateways, use case diagram, user stories, use cases, domain model, SSD, operation contracts, sequence diagrams, DCD, ERD, ADRs, SQA review records, traceability matrix, governance, QC checklists. Scaffolds the file with the correct ID, CrossReference and links, then gives the required sections for that type.
+description: Create, edit or review any project document artifact — Business Case, Stakeholder Analysis, KPI, Business Model Canvas, BPMN, milestones/gateways, use case diagram, user stories, use cases, domain model, SSD, operation contracts, sequence diagrams, DCD, ERD, test plans, architecture descriptions, ADRs, SQA review records, traceability matrix, governance, QC checklists. Scaffolds the file with the correct ID, CrossReference and links, then gives the required sections for that type.
 ---
 
 # Artifact
@@ -43,7 +43,7 @@ The table keeps only the **two latest** changes; git holds the rest. Columns:
 
 | Date | Status | Author | Reviewer | Change | Commit |
 | --- | --- | --- | --- | --- | --- |
-| 2026-10-01 | Accepted | Jane Doe | S02 | Added Risks section<br>Fixed scope wording | [a1b2c3d] |
+| 2026-10-01 | Accepted | Jens Tirsvad Nielsen | S02 | Added Risks section<br>Fixed scope wording | [a1b2c3d] |
 
 - **Status** — `Proposed`, `Accepted`, `Rejected` or `Deprecated` for every
   artifact type (`ADR` also has `Superseded by ADR-NNNN`); `Approved` is not
@@ -77,7 +77,7 @@ The table keeps only the **two latest** changes; git holds the rest. Columns:
 
 ## Reviewing an artifact
 
-1. Take the QC checklist named in the catalog (`framework/qc/qc-*.md`).
+1. Take the QC checklist named in the catalog (`framework/qc/*/qc-*.md`).
 2. Create the review record: `new-artifact.sh RC …`, following
    `references/RC.md`.
 3. Add or update the instance's row in the Traceability Matrix.
@@ -91,23 +91,42 @@ The table keeps only the **two latest** changes; git holds the rest. Columns:
 - **People:** use exact stakeholder IDs from the project's Stakeholder
   Analysis (`S01`) for owners, reviewers and RACI. Never invent role names.
 - **Diagrams** are PlantUML blocks; check them with
-  `bash framework/scripts/render-diagrams.sh --server <url> <file>` (or set
-  `PLANTUML_URL`) before review.
+  `bash framework/scripts/render-diagrams.sh <file>` before review. The server is
+  the `PlantUML server` setting of the project registry (`docs/artifact-registry.md`),
+  overridden by `PLANTUML_URL` or `--server <url>`.
 - **QC checklists** are framework files: every criterion is tagged with an
   ISO/IEC 25010:2023 characteristic, and they never mention real instances.
 - **IDs:** `<SHORT>-<version>`, 3 digits (`BC-001`); `ADR` uses 4 digits;
   `RC` is sequential across all types; QC is `QC-<SHORT>-<version>`.
-- **Language:** artifacts carry no `DomainLanguages` row. The PO language and
-  the register of each artifact type are in the `Languages` section of
-  `docs/artifact-registry.md` (registers: `IT Executive English` for
-  high-level, `IT Professional English` for technical).
-- **Translations:** when the PO language is not English, each type the
-  registry marks "Also kept as a PO-language file" is also saved as
-  `<artifact>.<language>.md` beside its English source (`business-case.da.md`).
-  A translation keeps the source's ID and sections, uses the PO terms from the
-  dictionary (`DICT`), and has a Version History row naming the source version
-  it follows. The English file is authoritative; update the translation in the
-  same change. If the PO language is English, no translations are made.
+- **Language:** the PO language and the register of each artifact type are in
+  the `Languages` section of `docs/artifact-registry.md` (registers:
+  `IT Executive English` for high-level, `IT Professional English` for
+  technical).
+- **Language and Domain rows:** every artifact of a type written in the PO
+  language has `Language` and `Domain` rows in its Metadata table, so a reviewer
+  sees at once how to read it. `Language` is a BCP 47 code (`da`, `en`);
+  `Domain` is a value from the domain list in the registry's `Languages`
+  section (for example `it`, `medical`, `construction`), because the same
+  language can carry a different professional vocabulary. `new-artifact.sh`
+  fills both from the registry's `PO language` and `PO domain` settings and
+  leaves a placeholder (with a warning) when a setting is missing. Technical
+  types (OC, SD, DCD, ERD, TP, AD, ADR, TM, RC, QC, source code) have no such rows:
+  they are always professional IT English. To list every document's language
+  and domain, see `check-languages.sh --list`.
+- **One file per artifact:** each type the registry marks "Written in the PO
+  language" exists once, in that language, under its normal name
+  (`business-case.md`). There is no translated twin (`business-case.da.md`)
+  and no authoritative English source; two files drift apart. Use the PO terms
+  from the dictionary (`DICT`). Types marked "No" (OC, SD, DCD, ERD, TP, AD, ADR, TM,
+  RC, QC, source code) stay in professional IT English.
+- **Structural vocabulary stays English:** Metadata keys, section headings,
+  IDs and statuses are the same in every language, because the scripts read
+  them (`find-crossreferences.sh`, `new-artifact.sh`,
+  `resolve-pending-commits.sh`, `sync-project.sh`, `check-plan.sh`). Only the
+  content (prose and table cells) is in the PO language.
+- **Changing an artifact's language** is a material change: add a Version
+  History row ("language en to da") and review it again. Git history keeps the
+  earlier language.
 - **Dictionary:** the Domain Model uses the PO term; the Operation Contract,
   Sequence Diagram, Design Class Diagram and ERD use the IT term. Every pair is
   recorded in `docs/dictionary.md` (`DICT`).

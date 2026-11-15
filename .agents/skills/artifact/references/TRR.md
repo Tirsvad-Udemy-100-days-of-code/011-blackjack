@@ -17,5 +17,7 @@ of the framework's training material (`TRN`); it holds project data
 
 Session (material, date, facilitator, format), Attendees and Assessment
 (stakeholder IDs, attended, Pass or Not yet against the assessment in the
-material), Feedback, Follow-ups (action, owner as a stakeholder ID, due).
+material, and the languages the reviewer reads and the domains they know, for
+example `da, en; it, medical`: the review process uses it to choose a reviewer
+for a PO-language artifact), Feedback, Follow-ups (action, owner as a stakeholder ID, due).
 Fill the record after the session; never before.

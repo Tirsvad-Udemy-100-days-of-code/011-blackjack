@@ -21,8 +21,8 @@ the first of these that states it:
 
 If none states it, **ask the user for it** and stop planning until it is
 answered; never assume one. Record the answer in the registry's `Languages`
-section. If it differs from the project's working language, the high-level
-artifacts are also kept in it (see the registry's translation list).
+section. The artifact types the registry marks "Written in the PO language"
+are written in it, once, with no translated copy.
 
 ## Start here
 
@@ -32,6 +32,11 @@ Stakeholder Analysis (`SA`), the Project Plan (`PP`) and at least one
 milestone (`MIL`). If one is missing, create it first, in that order, with
 `new-artifact.sh` (it refuses when a type in the catalog's `Requires` column
 is missing).
+
+Each of these steps ends with a review: the document counts only once its
+review record (`RC-*`) says `Go` and its Version History row is `Accepted`
+(`process/review-checklist-process.md`). Do not start a step on a document that
+is still `Proposed`; ask for the review first.
 
 A "build X" request is planning-first. Produce the phases, tasks and issues,
 show the dry run of `sync-project.sh`, and ask for a go-ahead before any code
@@ -60,38 +65,51 @@ When in doubt, ask: does this row describe a goal an actor is pursuing, or
 a step the team takes to build something? Goals get a use case; steps stay
 a plain task.
 
+Where candidate stories exist (`create-project`, step 4a), the tasks of a
+milestone come from the accepted Must and Should use cases, in priority order,
+and a task cites the story or use case it comes from.
+
 ## Use cases get their own folder
 
-Each use case lives in `docs/uc-NNN/` (`UC-001` → `docs/uc-001/`), together
+Each use case lives in `docs/use-cases/uc-NNN/` (`UC-001` → `docs/use-cases/uc-001/`), together
 with the artifacts that belong to it. Nothing about a use case goes in a
 shared `docs/use-cases/` folder.
 
 1. **Create the folder and the use case:**
-   `bash framework/scripts/new-artifact.sh UC --file docs/uc-001/uc.md`.
+   `bash framework/scripts/new-artifact.sh UC --file docs/use-cases/uc-001/uc.md`.
 2. **Create only the artifacts this use case affects,** in this order, each in
    the same folder with a fixed file name. Skip any it does not touch (no
    `erd.md` if nothing is stored; no `dm.md` if it adds no concept).
 
    | Order | Type | File | Create when the use case… |
    | --- | --- | --- | --- |
-   | 1 | `SSD` | `ssd.md` | has system interaction to show (almost always) |
-   | 2 | `DM` | `dm.md` | introduces or changes domain concepts |
+   | 1 | `DM` | `dm.md` | introduces or changes domain concepts |
+   | 2 | `SSD` | `ssd.md` | has system interaction to show (almost always) |
    | 3 | `OC` | `oc.md` | has system operations that change state |
    | 4 | `SD` | `sd.md` | needs a collaboration design for an operation |
    | 5 | `DCD` | `dcd.md` | adds or changes design classes |
    | 6 | `ERD` | `erd.md` | adds or changes persisted data |
 
+   **Before the `DM`, read the project Domain Model** (`docs/domain-model.md`, in
+   the root of `docs/`). Reuse each concept, attribute and association that
+   already exists, with the same name and meaning; add to the use case's `dm.md`
+   only what is new or changed, and keep it conceptual with no empty concept
+   (`references/DM.md`, "Keep the model conceptual"). The same applies before the
+   `DCD` and the `ERD`: read `docs/dcd.md` and `docs/erd.md` first.
+
    ```bash
-   bash framework/scripts/new-artifact.sh SSD --file docs/uc-001/ssd.md
-   bash framework/scripts/new-artifact.sh DM  --file docs/uc-001/dm.md      --cite UC-001=docs/uc-001/uc.md
+   bash framework/scripts/new-artifact.sh SSD --file docs/use-cases/uc-001/ssd.md
+   bash framework/scripts/new-artifact.sh DM  --file docs/use-cases/uc-001/dm.md      --cite UC-001=docs/use-cases/uc-001/uc.md
    ```
 
    `new-artifact.sh` cites only the artifacts in the same use-case folder
    (and project-level ones); for `DM`, `DCD` and `ERD`, add the use case and
    sibling artifacts by hand with `--cite`. Each gets its own ID (the next
    version in the registry, e.g. `DM-002`) and its own `RC-*` review.
-3. **Reconcile with the project models.** The use-case artifacts are a scoped
-   view; the project-level `docs/domain-model.md`, `docs/dcd.md` and
+3. **Add the use case's work to the project models.** This is part of the use
+   case's work, not a later clean-up: a use case's `DM`, `DCD` or `ERD` is not
+   done until its additions are in the project-level document. The use-case
+   artifacts are a scoped view; the project-level `docs/domain-model.md`, `docs/dcd.md` and
    `docs/erd.md` are the consolidated truth. When the use case's `DM`, `DCD`
    or `ERD` are done, compare each with its project-level document:
    - add the new concepts, classes, attributes and entities; change the ones
@@ -118,7 +136,8 @@ shared `docs/use-cases/` folder.
    one row per task using the hierarchy rule above. Tasks that need a use
    case or user story get one created first (`UC`/`US` types; a use case
    follows "Use cases get their own folder" below), then are referenced from
-   the Tasks row; plain tasks just describe the work.
+   the Tasks row; plain tasks just describe the work. A task that tests a GUI
+   names its environment (Windows Sandbox or Docker container), as `framework/process/gui-testing.md` requires.
 4. **Sync to the git host.** Run the sync tool (below) to create or update
    the corresponding Milestones and Issues. Do this whenever a phase or its
    tasks change — the tool is idempotent (matches by title, never creates a
@@ -135,12 +154,13 @@ bash framework/scripts/sync-project.sh --apply      # actually create/update on 
 - **Default is a dry run**: it parses `docs/milestones/mil-*.md` and prints
   what would be created or updated. Nothing is sent anywhere.
 - **`--apply`** performs the real requests. It needs:
-  - **Gitea** (default — detected from `origin`'s hostname): `GITEA_TOKEN`
-    env var, a personal access token. This is an HTTP API call (milestones,
+  - **Gitea** (default — detected from `origin`'s hostname): `TOKEN_FOR_GITEA_ISSUES`
+    env var (else `SYNC_TOKEN`, else `GITEA_TOKEN`), a personal access token. This is an HTTP API call (milestones,
     issues) — a deploy key cannot be used, since deploy keys only
     authenticate SSH git transport (clone/fetch/push), not the REST API.
-    Scope the token to issues only if your Gitea version supports scoped
-    tokens, rather than a full-account one.
+    Scope `TOKEN_FOR_GITEA_ISSUES` to issues and milestones only; it wins
+    over the older names, and `TOKEN_FOR_GITEA_REPO` stays for push and pull
+    requests.
   - **GitHub** (detected when `origin` is on github.com, or pass
     `--host github`): the `gh` CLI, already logged in (`gh auth login`).
 - **`--with-project`** additionally tries to create/attach a Kanban Project
@@ -157,6 +177,20 @@ bash framework/scripts/sync-project.sh --apply      # actually create/update on 
 `--apply` is an outward-facing, hard-to-reverse action (it creates real
 Milestones/Issues on the git host) — run it yourself once you're ready, or
 ask explicitly for it to be run.
+
+### When the publish workflow is installed
+
+If the project has the publish workflow (`.gitea/workflows/sync-milestones.yml`
+or `.github/workflows/sync-milestones.yml`, taken from
+`TirSystem/git-workflows`), a milestone that is `Accepted`
+with a `Go` review is published to the git host by the workflow after its merge
+to `main`. Then:
+
+- **Do not run `--apply` for it yourself.** Show the dry run if the user wants to
+  see the plan, and let the merge publish it.
+- A milestone that is still `Proposed`, or whose latest review is not a `Go`, is
+  skipped by the workflow (`--accepted-only`): it has no Milestone or Issues yet.
+- Without the workflow, `--apply` stays the user's decision, as above.
 
 ## Branching before commits
 
@@ -223,9 +257,12 @@ finishing it — that links the commit without closing.
   completes that row's work closes that Issue.
 - Don't guess an issue number; if it isn't known from a recent sync or a
   lookup, ask rather than omit or fabricate one.
+- A `Proposed` milestone has no Issues yet, so a `Closes #N` line has nothing to
+  close until the milestone is accepted and published. Say in the PR that the
+  issue closes after the acceptance; do not invent a number.
 - **After pushing a multi-issue closing commit, verify** each issue's state
   came back `closed` (e.g. `GET /repos/<owner>/<repo>/issues/<N>` with
-  `GITEA_TOKEN`) rather than assuming the whole list closed; close any that
+  `TOKEN_FOR_GITEA_ISSUES`) rather than assuming the whole list closed; close any that
   didn't with a direct `PATCH .../issues/<N>` `{"state":"closed"}` call.
 
 ## Pull requests close the issues they complete
@@ -273,6 +310,6 @@ branch.
 - `docs/project-plan.md` — `PP`, via the `artifact` skill.
 - `docs/milestones/mil-*.md` — `MIL`, via the `artifact` skill, each with a
   `## Tasks` section.
-- `docs/uc-NNN/*.md` (the use case and its `SSD`, `DM`, `OC`, `SD`, `DCD`, `ERD`), `docs/user-stories.md` — only for tasks that need one; plus `docs/domain-model.md`, `docs/dcd.md`, `docs/erd.md` when reconciling.
+- `docs/use-cases/uc-NNN/*.md` (the use case and its `SSD`, `DM`, `OC`, `SD`, `DCD`, `ERD`), `docs/user-stories.md` — only for tasks that need one; plus `docs/domain-model.md`, `docs/dcd.md`, `docs/erd.md` when reconciling.
 - `framework/scripts/sync-project.sh` — never edited per project; propose
   changes upstream in the framework.
