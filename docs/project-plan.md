@@ -12,7 +12,7 @@
 | Date | Status | Author | Reviewer | Change | Commit |
 | --- | --- | --- | --- | --- | --- |
 | 2026-10-04 | Accepted | Jens Tirsvad Nielsen | S01 | Initial version | [1d35410] |
-| 2026-11-15 | Accepted | Jens Tirsvad Nielsen | AI as stand-in for S01 | Added the baseline gateway MIL-003, its scope coverage, dependency, risk and Gantt rows; sources on the assumptions; the Language and Domain metadata; refreshed the open issues; reviewed in autonomous mode, not independent | pending |
+| 2026-11-15 | Accepted | Jens Tirsvad Nielsen | AI as stand-in for S01 | Added the baseline gateway MIL-003, its scope coverage, dependency, risk and Gantt rows; sources on the assumptions; the Language and Domain metadata; refreshed the open issues; reviewed in autonomous mode, not independent | [11c811b] |
 
 ---
 
@@ -94,3 +94,4 @@ A No-Go on Gateway 1 moves every Gateway 2 and Gateway 3 date by the same number
 [Milestone-34]: https://git.tirsystem.com/Tirsvad-Udemy-100-days-of-code/011-blackjack/milestone/34
 [Milestone-35]: https://git.tirsystem.com/Tirsvad-Udemy-100-days-of-code/011-blackjack/milestone/35
 [1d35410]: https://git.tirsystem.com/Tirsvad-Udemy-100-days-of-code/011-blackjack/commit/1d35410b8d29df6c4991a0b9aff24f8509d58a86
+[11c811b]: https://git.tirsystem.com/Tirsvad-Udemy-100-days-of-code/011-blackjack/commit/11c811bf713454e183db31fb0ebb0965614bd3bf

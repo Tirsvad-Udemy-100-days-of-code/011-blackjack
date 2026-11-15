@@ -12,7 +12,7 @@
 | Date | Status | Author | Reviewer | Change | Commit |
 | --- | --- | --- | --- | --- | --- |
 | 2026-10-04 | Accepted | Jens Tirsvad Nielsen | S01 | Initial version | [1d35410] |
-| 2026-11-15 | Accepted | Jens Tirsvad Nielsen | AI as stand-in for S01 | Added concern IDs CN-001 to CN-008 (QC-SA-001 criterion 9), the conflict of author and reviewer being one person, the baseline gateway in the communication plan, the Language and Domain metadata and the spelled-out FURPS+; reviewed in autonomous mode, not independent | pending |
+| 2026-11-15 | Accepted | Jens Tirsvad Nielsen | AI as stand-in for S01 | Added concern IDs CN-001 to CN-008 (QC-SA-001 criterion 9), the conflict of author and reviewer being one person, the baseline gateway in the communication plan, the Language and Domain metadata and the spelled-out FURPS+; reviewed in autonomous mode, not independent | [11c811b] |
 
 ---
 
@@ -86,3 +86,4 @@ Accepted by S01 on the initial version. The later edit (concern IDs, conflict, m
 
 [BC-001]: ./business-case.md
 [1d35410]: https://git.tirsystem.com/Tirsvad-Udemy-100-days-of-code/011-blackjack/commit/1d35410b8d29df6c4991a0b9aff24f8509d58a86
+[11c811b]: https://git.tirsystem.com/Tirsvad-Udemy-100-days-of-code/011-blackjack/commit/11c811bf713454e183db31fb0ebb0965614bd3bf

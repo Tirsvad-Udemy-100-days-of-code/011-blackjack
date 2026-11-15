@@ -9,7 +9,7 @@
 ## Version History
 | Date | Status | Author | Reviewer | Change | Commit |
 | --- | --- | --- | --- | --- | --- |
-| 2026-11-15 | Accepted | Jens Tirsvad Nielsen | AI as stand-in for S01 | Initial version; created with the review records of the baseline (autonomous, not independent) | pending |
+| 2026-11-15 | Accepted | Jens Tirsvad Nielsen | AI as stand-in for S01 | Initial version; created with the review records of the baseline (autonomous, not independent) | [11c811b] |
 
 ---
 
@@ -67,3 +67,4 @@ No view, design or test-plan artifact exists yet (the scope excludes them), so t
 [RC-005]: ./reviews/rc-005-milestone-002.md
 [RC-006]: ./reviews/rc-006-milestone-003.md
 [RC-007]: ./reviews/rc-007-wiki.md
+[11c811b]: https://git.tirsystem.com/Tirsvad-Udemy-100-days-of-code/011-blackjack/commit/11c811bf713454e183db31fb0ebb0965614bd3bf
